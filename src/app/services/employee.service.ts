@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +10,8 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
 
 
-  private apiUrl = 'https://zippy-soft-heaven.glitch.me/employees';
+  // private apiUrl = 'https://zippy-soft-heaven.glitch.me/employees';
+  private apiUrl = `${environment.apiUrl}/employees`;
 
   constructor(private _http: HttpClient) { }
 
