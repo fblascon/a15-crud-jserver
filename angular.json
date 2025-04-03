@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/a15-crud-jserver/",
             "outputPath": "dist/crud-app",
             "index": "src/index.html",
             "main": "src/main.ts",
