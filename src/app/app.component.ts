@@ -43,31 +43,7 @@ export class AppComponent implements OnInit {
   ) { }
 
 
-  // Añade esta propiedad al componente
-  apiData: any = null;
-  apiError: any = null;
-  isLoading: boolean = false;
 
-  // Añade este método
-  testApiConnection() {
-    this.isLoading = true;
-    this.apiData = null;
-    this.apiError = null;
-
-    this._http.get('https://zippy-soft-heaven.glitch.me/employees')
-      .subscribe({
-        next: (data) => {
-          console.log('API TEST - Data received:', data);
-          this.apiData = data;
-          this.isLoading = false;
-        },
-        error: (err) => {
-          console.error('API TEST - Error:', err);
-          this.apiError = err;
-          this.isLoading = false;
-        }
-      });
-  }
 
   ngOnInit(): void {
     this.getEmployeeList();
@@ -131,4 +107,34 @@ export class AppComponent implements OnInit {
       },
     });
   }
+
+
+  // Añade esta propiedad al componente
+  apiData: any = null;
+  apiError: any = null;
+  isLoading: boolean = false;
+
+  // Añade este método
+  testApiConnection() {
+    this.isLoading = true;
+    this.apiData = null;
+    this.apiError = null;
+
+    this._http.get('https://zippy-soft-heaven.glitch.me/employees')
+      .subscribe({
+        next: (data) => {
+          console.log('API TEST - Data received:', data);
+          this.apiData = data;
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error('API TEST - Error:', err);
+          this.apiError = err;
+          this.isLoading = false;
+        }
+      });
+  }
+
+
+
 }
