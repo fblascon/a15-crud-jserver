@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { EmpAddEditComponent } from './emp-add-edit/emp-add-edit.component';
 import { EmployeeService } from './services/employee.service';
@@ -37,8 +38,36 @@ export class AppComponent implements OnInit {
   constructor(
     private _dialog: MatDialog,
     private _empService: EmployeeService,
-    private _coreService: CoreService
-  ) {}
+    private _coreService: CoreService,
+    private _http: HttpClient  // Añadida esta linea como solucion en glitch
+  ) { }
+
+
+  // Añade esta propiedad al componente
+  apiData: any = null;
+  apiError: any = null;
+  isLoading: boolean = false;
+
+  // Añade este método
+  testApiConnection() {
+    this.isLoading = true;
+    this.apiData = null;
+    this.apiError = null;
+
+    this._http.get('https://zippy-soft-heaven.glitch.me/employees')
+      .subscribe({
+        next: (data) => {
+          console.log('API TEST - Data received:', data);
+          this.apiData = data;
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error('API TEST - Error:', err);
+          this.apiError = err;
+          this.isLoading = false;
+        }
+      });
+  }
 
   ngOnInit(): void {
     this.getEmployeeList();
